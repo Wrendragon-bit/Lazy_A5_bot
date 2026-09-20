@@ -1,0 +1,98 @@
+# =====================================================================
+#  THIS IS THE ONLY FILE YOU EDIT.  Click the pencil icon on GitHub,
+#  change things, then press "Commit changes".  A green tick means OK,
+#  a red cross means a typing mistake (click it to see which line).
+#  Everything below is an EXAMPLE - replace it with your real data.
+#  Keep the spaces at the start of each line exactly as they are.
+# =====================================================================
+
+# Your time zone (examples: Asia/Phnom_Penh, Asia/Bangkok, Europe/London)
+timezone: Asia/Phnom_Penh
+
+# ---------------------------------------------------------------- semester
+semester:
+  year: 3                 # Year 3
+  number: 1               # Semester 1
+  start: 2026-09-14       # Monday of week 1  (write it like YYYY-MM-DD)
+  weeks: 16               # how many weeks in the semester
+
+# ---------------------------------------------------------------- projector
+# Groups take turns automatically, one group per week, in this order.
+projector:
+  teams:
+    - Group 1
+    - Group 2
+    - Group 3
+    - Group 4
+    - Group 5
+    - Group 6
+    - Group 7
+    - Group 8
+  rotation_start: 2026-09-14    # the week of this date uses the FIRST team
+  # Need to change one week?  Add a line like this (date = any day of that week):
+  overrides:
+    # 2026-10-19: Group 4
+
+# ---------------------------------------------------------------- exams & holidays
+# type is exam, holiday or other.   end and note are optional.
+# If a title has a colon (:) put the title in "quotes".
+events:
+  - title: Midterm exam - Networking
+    type: exam
+    start: 2026-10-05
+    end: 2026-10-09
+    note: Room B2
+
+  - title: Final exam - Databases
+    type: exam
+    start: 2027-01-11
+
+  - title: Example holiday (replace me)
+    type: holiday
+    start: 2026-10-10
+    end: 2026-10-12
+
+# ---------------------------------------------------------------- class schedule
+# day = Monday ... Sunday.   time = start-end  (keep the quotes).
+schedule:
+  - day: Monday
+    time: "13:00-17:00"
+    subject: Web Technology and Cloud Computing II
+    room: D202
+    teacher: Chhim Bunchhun
+
+  - day: Tuesday
+    time: "13:00-16:00"
+    subject: Operating Systems
+    room: online
+    teacher: Kim Seyla
+
+  - day: Wednesday
+    time: "13:00-17:00"
+    subject: UX/UI Design and Development I
+    room: Online
+    teacher: Ok keovichear
+
+  - day: Thursday
+    time: "13:00-17:00"
+    subject: Mobile Application Development I
+    room: D201
+    teacher: Lay Rithy
+
+  - day: Friday
+    time: "13:00-17:00"
+    subject: Networking Engineering I
+    room: D203
+    teacher: Ses Det
+
+  - day: Saturday
+    time: "07:00-11:00"
+    subject: Introduction to AI and Machine Learning
+    room: T304
+    teacher: Mao Makara
+
+  - day: Saturday
+    time: "13:00-16:00"
+    subject: English
+    room: Online
+    teacher: Koem Sovanarith
