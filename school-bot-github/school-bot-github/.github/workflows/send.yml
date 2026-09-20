@@ -1,0 +1,48 @@
+name: Send message
+
+on:
+  schedule:
+    # Times are in UTC. 00:00 UTC = 07:00 in Cambodia / Thailand / Vietnam (UTC+7).
+    # Other country?  Change the hour.  Example: UTC+8 -> use 23:00 the day before.
+    - cron: "0 0 * * 1"      # every Monday        -> the weekly message
+    - cron: "0 1 1 * *"      # the 1st of a month  -> exams & holidays of the new month
+  workflow_dispatch:         # the "Run workflow" button
+    inputs:
+      what:
+        description: "What to send"
+        type: choice
+        options: [weekly, month, schedule]
+        default: weekly
+      month:
+        description: "Only for 'month': a month like 10 or 2026-10 (empty = this month)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Preview only - do not send"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency: send-message
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Send
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_IDS: ${{ secrets.CHAT_IDS }}
+          WHAT: ${{ github.event_name == 'workflow_dispatch' && inputs.what || (github.event.schedule == '0 1 1 * *' && 'month' || 'weekly') }}
+          MONTH: ${{ inputs.month }}
+          DRY: ${{ inputs.dry_run && '--dry-run' || '' }}
+        run: python bot.py "$WHAT" --month "$MONTH" $DRY
